@@ -89,7 +89,7 @@ This is aspirational, not a commitment.
 
 Project contributors.
 
-* Name — focus or contribution
+* Shannon Fong — Product Design
 * Name — focus or contribution
 
 *(Roles optional and flexible.)*
