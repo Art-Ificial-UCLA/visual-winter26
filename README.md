@@ -10,27 +10,40 @@
 
 ## Project Statement
 
-*A short, clear description of what this project is and why it exists.*
-This should be understandable to someone outside the club in 2–3 sentences. Focus on the creative goal, not implementation details.
+This project explores how AI and curated databases can help filmmakers and creators quickly discover and apply cinematic “vibes” to their work. By generating cohesive packages of colors, music, sound effects, and visual references from a single prompt or theme, the platform makes creative direction faster, more accessible, and more intentional. The goal is to bridge inspiration and execution through an interactive creative toolkit.
 
 ---
 
 ## Concept & Inspiration
 
-What inspired this project? This can be an artwork, technology, question, or frustration.
-Keep this lightweight — a paragraph or a few bullets is perfect.
+We were inspired by:
+
+* Cinematic inspiration platforms like eyecannndy.com
+* Moodboards and creative direction tools like Pinterest and Are.na
+* The rise of AI tools that translate text prompts into creative outputs
+* The desire to make cinematic storytelling tools more accessible to creators of all levels
+
+This project asks:
+What if you could type a feeling, genre, or cinematic idea, and instantly receive everything needed to create that vibe?
 
 ---
 
 ## What This Project Does
 
-Describe the current functionality of the project **as it exists now**.
+This project is a web‑based cinematic inspiration and asset discovery platform.
 
-* Core behavior or output
-* What a user/viewer experiences
-* Any notable creative or technical features
+Core functionality includes:
 
-*(This section should naturally evolve as the project becomes more real.)*
+* A browseable library of cinematic “vibes,” each represented by a visual thumbnail
+* Each vibe contains a curated package of:
+* Color palettes and cinematic color references
+* Royalty‑free music tracks matching the mood
+* Sound effects aligned with the atmosphere
+* Visual references and imagery
+* A structured database where each vibe is tagged with attributes like genre, emotion, tempo, and visual tone
+* A user experience that allows creators to explore, discover, and apply cinematic direction quickly
+
+The intended experience is for users to browse or search for a vibe (e.g., “cyberpunk,” “dreamy romance,” “suspenseful thriller”) and instantly access a cohesive creative toolkit to guide their editing and storytelling process.
 
 ---
 
@@ -38,7 +51,7 @@ Describe the current functionality of the project **as it exists now**.
 
 > Where the project stands today.
 
-* ☐ Concept / exploration
+* ☑ Concept / exploration
 * ☐ Prototype
 * ☐ Working demo
 * ☐ Polished experience
@@ -49,26 +62,30 @@ Optional: one sentence on what’s working and what’s still rough.
 
 ## Demo / Media
 
-Add visuals as soon as possible — even rough ones.
+Coming soon.
 
-* Screenshots
-* Short clips
-* GIFs
-* Links to demos or recordings
-
-*(A README with visuals always feels more “real.”)*
+Planned media:
+* Wireframes (Figma)
+* UI concepts for homepage and vibe pages
+* Early prototype of browse and vibe detail views
 
 ---
 
 ## How It’s Built (High-Level)
 
-Describe the structure without locking into tools unless relevant.
+This project is being developed as a web‑based platform combining design, database systems, and creative asset integration.
 
-* Platform / medium (e.g. interactive installation, web app, Unity experience)
-* Key systems or components
-* Any notable constraints or design decisions
+Structure includes:
 
-Keep this readable to non-engineers.
+* Frontend web interface for browsing and viewing cinematic vibes
+* A structured database storing vibe entries and associated asset metadata
+* Curated and aggregated links to royalty‑free creative resources (music, sound effects, and visuals)
+* A tagging system that categorizes vibes by genre, mood, emotion, and visual characteristics
+* The system is designed to connect creative intent (a mood or prompt) with curated creative assets, enabling faster and more cohesive creative workflows.
+
+Design prototypes and interface flows are being developed in Figma.
+
+
 
 ---
 
@@ -77,11 +94,12 @@ Keep this readable to non-engineers.
 Where could this project go next?
 
 
-* Features or ideas you’d add with more time
-* Creative extensions
-* Open questions or experiments
-
-This is aspirational, not a commitment.
+* Prompt‑based AI generation of cinematic vibe packages
+* Personalized recommendations based on user preferences
+* Exportable color grading presets and editing references
+* Integration with creative tools such as Premiere Pro or After Effects
+* Expanded vibe database with more granular tagging and categorization
+* Community‑contributed vibe collections
 
 ---
 
@@ -90,9 +108,7 @@ This is aspirational, not a commitment.
 Project contributors.
 
 * Shannon Fong — Product Design
-* Name — focus or contribution
-
-*(Roles optional and flexible.)*
+* Aarnav Dharia — Technical Project Member
 
 ---
 
