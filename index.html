@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FRAMEVIBES — Cinematic Toolkit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+  <!-- =========================================
+       HEADER
+  ========================================= -->
+  <header>
+    <div class="logo" onclick="navigate('home')" style="cursor:pointer">FRAME<span>VIBES</span></div>
+    <nav>
+      <a href="#" onclick="navigate('home')" class="active" id="nav-home">Home</a>
+      <a href="#" onclick="navigate('browse')" id="nav-browse">Browse</a>
+      <a href="#" onclick="navigate('about')" id="nav-about">Sources</a>
+    </nav>
+    <div class="nav-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Search vibes..." id="searchInput" onkeydown="handleSearch(event)"/>
+    </div>
+  </header>
+
+  <!-- =========================================
+       HOME PAGE
+  ========================================= -->
+  <div class="page active" id="page-home">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Cinematic Resource Toolkit</div>
+        <h1>
+          Set the
+          <em>Mood.</em>
+          Every Scene.
+        </h1>
+        <p class="hero-desc">
+          Enter a genre or pick a vibe — instantly get a matching color palette,
+          royalty-free music, and sound effects sourced from copyright-safe archives.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="navigate('browse')">Explore Vibes</button>
+          <button class="btn-ghost" onclick="openDetail(vibes[0])">See Example →</button>
+        </div>
+      </div>
+      <div class="hero-bg-slider">
+        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=1800&q=80')"></div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1800&q=80')"></div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1800&q=80')"></div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=1800&q=80')"></div>
+        <div class="hero-slide-overlay"></div>
+      </div>
+    </section>
+
+    <!-- Genre Bar -->
+    <div class="genre-bar">
+      <button class="genre-pill active" onclick="filterByGenre('all', this)">All</button>
+      <button class="genre-pill" onclick="filterByGenre('sci-fi', this)">Sci-Fi</button>
+      <button class="genre-pill" onclick="filterByGenre('thriller', this)">Thriller</button>
+      <button class="genre-pill" onclick="filterByGenre('romance', this)">Romance</button>
+      <button class="genre-pill" onclick="filterByGenre('horror', this)">Horror</button>
+      <button class="genre-pill" onclick="filterByGenre('indie', this)">Indie</button>
+      <button class="genre-pill" onclick="filterByGenre('luxury', this)">Luxury</button>
+      <button class="genre-pill" onclick="filterByGenre('action', this)">Action</button>
+      <button class="genre-pill" onclick="filterByGenre('western', this)">Western</button>
+    </div>
+
+    <!-- Featured Vibes -->
+    <div class="section-header">
+      <div>
+        <div class="section-title">FEATURED VIBES</div>
+        <div class="section-subtitle">Curated cinematic moods — click to explore</div>
+      </div>
+      <a href="#" class="section-link" onclick="navigate('browse')">Browse All →</a>
+    </div>
+
+    <div class="vibes-grid" id="vibesGrid"></div>
+
+    <!-- How It Works -->
+    <section class="how-section">
+      <div class="section-header" style="padding: 0 0 0 0;">
+        <div>
+          <div class="section-title">HOW IT WORKS</div>
+          <div class="section-subtitle">Three steps to your cinematic toolkit</div>
+        </div>
+      </div>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-num">01</div>
+          <div class="how-title">Pick Your Vibe</div>
+          <p class="how-desc">Browse by genre, mood, or energy level. Or type a keyword — our database finds the closest cinematic match from curated entries.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">02</div>
+          <div class="how-title">Explore the Toolkit</div>
+          <p class="how-desc">Each vibe card opens a full panel with color palettes (copyable hex codes), mood-matched music tracks, and ambient sound effects — all royalty-free.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">03</div>
+          <div class="how-title">Use It Freely</div>
+          <p class="how-desc">Every asset links directly to its original source. No downloading from us — we point you to CC0, CC BY, and royalty-free libraries so you stay legally clear.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <div class="footer-logo">FRAME<span>VIBES</span></div>
+        <p class="footer-tagline">A cinematic resource toolkit for editors, filmmakers, and visual storytellers.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#" onclick="navigate('home')">Home</a></li>
+          <li><a href="#" onclick="navigate('browse')">Browse Vibes</a></li>
+          <li><a href="#" onclick="navigate('about')">Sources</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Genres</h4>
+        <ul>
+          <li><a href="#" onclick="navigate('browse')">Sci-Fi</a></li>
+          <li><a href="#" onclick="navigate('browse')">Horror</a></li>
+          <li><a href="#" onclick="navigate('browse')">Romance</a></li>
+          <li><a href="#" onclick="navigate('browse')">Indie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://freesound.org" target="_blank">Freesound.org</a></li>
+          <li><a href="https://pixabay.com/music" target="_blank">Pixabay Music</a></li>
+          <li><a href="https://freemusicarchive.org" target="_blank">FMA</a></li>
+          <li><a href="https://coolors.co" target="_blank">Coolors</a></li>
+        </ul>
+      </div>
+    </footer>
+    <div class="footer-bottom">
+      <p>© 2025 FrameVibes. All linked assets retain their original licenses.</p>
+      <p style="font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted);">Built for creators</p>
+    </div>
+  </div>
+
+  <!-- =========================================
+       BROWSE PAGE
+  ========================================= -->
+  <div class="page" id="page-browse">
+    <div class="browse-hero">
+      <div class="browse-hero-inner">
+        <div class="browse-title">BROWSE <span>VIBES</span></div>
+        <p class="browse-subtitle">Filter by genre, mood, energy, or tempo to find your perfect cinematic toolkit.</p>
+      </div>
+      <div class="filter-row">
+        <div class="filter-group">
+          <span class="filter-label">Genre</span>
+          <select class="filter-select" id="filterGenre" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="sci-fi">Sci-Fi</option>
+            <option value="thriller">Thriller</option>
+            <option value="romance">Romance</option>
+            <option value="horror">Horror</option>
+            <option value="indie">Indie</option>
+            <option value="luxury">Luxury</option>
+            <option value="action">Action</option>
+            <option value="western">Western</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Mood</span>
+          <select class="filter-select" id="filterMood" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="dark">Dark</option>
+            <option value="dreamy">Dreamy</option>
+            <option value="intense">Intense</option>
+            <option value="calm">Calm</option>
+            <option value="suspenseful">Suspenseful</option>
+            <option value="warm">Warm</option>
+            <option value="nostalgic">Nostalgic</option>
+            <option value="eerie">Eerie</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Energy</span>
+          <select class="filter-select" id="filterEnergy" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Tempo</span>
+          <select class="filter-select" id="filterTempo" onchange="applyFilters()">
+            <option value="all">All</option>
+            <option value="slow">Slow (&lt;80 BPM)</option>
+            <option value="mid">Mid (80–120 BPM)</option>
+            <option value="fast">Fast (120+ BPM)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="browse-grid" id="browseGrid"></div>
+  </div>
+
+  <!-- =========================================
+       ABOUT / SOURCES PAGE
+  ========================================= -->
+  <div class="page" id="page-about">
+    <div class="about-hero">
+      <div class="about-hero-text">
+        <div class="about-hero-eyebrow">Transparency & Licensing</div>
+        <h2 class="about-hero-title">Where every <em>asset</em> comes from — and why it's safe to use.</h2>
+        <p class="about-desc">FrameVibes doesn't host or own any music, sound effects, or images. We curate and link directly to copyright-safe, properly licensed sources so you can use assets with confidence.</p>
+      </div>
+    </div>
+
+    <div class="sources-section">
+      <div class="section-header" style="padding: 0 0 0 0; margin-bottom: 0;">
+        <div>
+          <div class="section-title">DATA SOURCES</div>
+          <div class="section-subtitle">All external sources used in this toolkit</div>
+        </div>
+      </div>
+      <div class="sources-grid">
+        <div class="source-card">
+          <div class="source-card-type">🎨 Color Palettes</div>
+          <div class="source-card-title">Adobe Color</div>
+          <div class="source-card-url">color.adobe.com</div>
+          <p class="source-card-desc">Trending and curated cinematic palettes. Used via manual curation and their public Explore API. Palettes are community-shared under Adobe's Terms.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🎨 Color Palettes</div>
+          <div class="source-card-title">Coolors.co</div>
+          <div class="source-card-url">coolors.co</div>
+          <p class="source-card-desc">Color scheme generator. Palettes exported manually as hex arrays and tagged by mood/genre. Free to use under Coolors' public sharing model.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🎨 Color Palettes</div>
+          <div class="source-card-title">Lospec</div>
+          <div class="source-card-url">lospec.com/palette-list</div>
+          <p class="source-card-desc">Community palette database specializing in retro, indie, and pixel-art-influenced color sets. Used for lo-fi, indie film, and stylized genre palettes.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🎵 Music</div>
+          <div class="source-card-title">Free Music Archive</div>
+          <div class="source-card-url">freemusicarchive.org</div>
+          <p class="source-card-desc">Community-curated Creative Commons music. Tracks used are CC BY or CC0 licensed. Attribution shown on each detail page as required.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🎵 Music</div>
+          <div class="source-card-title">ccMixter</div>
+          <div class="source-card-url">ccmixter.org</div>
+          <p class="source-card-desc">Creative Commons remix community with thousands of tracks. Music is CC BY or CC BY-NC licensed — ideal for indie, folk, and ambient cinematic layering.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🎵 Music</div>
+          <div class="source-card-title">Pixabay Music</div>
+          <div class="source-card-url">pixabay.com/music</div>
+          <p class="source-card-desc">Royalty-free music, no attribution required. Licensed under Pixabay's Content License — free for commercial and non-commercial use.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🔊 Sound Effects</div>
+          <div class="source-card-title">Freesound.org</div>
+          <div class="source-card-url">freesound.org</div>
+          <p class="source-card-desc">Massive Creative Commons SFX library. Accessed via Freesound API v2. Licenses vary (CC0 / CC BY / CC BY-NC) — shown per track.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🔊 Sound Effects</div>
+          <div class="source-card-title">BBC Sound Effects</div>
+          <div class="source-card-url">sound-effects.bbcrewind.co.uk</div>
+          <p class="source-card-desc">16,000+ archival SFX from the BBC archives. Available under the RemArc license for personal, educational, and research use.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🖼 Visual References</div>
+          <div class="source-card-title">FilmGrab</div>
+          <div class="source-card-url">film-grab.com</div>
+          <p class="source-card-desc">Curated movie stills used as visual mood references only — not downloaded or hosted. Each reference links back to the original FilmGrab page.</p>
+        </div>
+        <div class="source-card">
+          <div class="source-card-type">🖼 Visual References</div>
+          <div class="source-card-title">Unsplash</div>
+          <div class="source-card-url">unsplash.com</div>
+          <p class="source-card-desc">High-quality CC0 photography used for vibe card backgrounds and visual references. Free for commercial use, no attribution required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       SEARCH RESULTS PAGE
+  ========================================= -->
+  <div class="page" id="page-search">
+    <div class="search-page-header">
+      <div class="search-page-query">Results for: <span id="searchQueryDisplay"></span></div>
+      <div class="search-page-count" id="searchCountDisplay"></div>
+    </div>
+    <div class="vibes-grid" id="searchGrid" style="padding-top:40px"></div>
+  </div>
+
+  <!-- =========================================
+       DETAIL OVERLAY
+  ========================================= -->
+  <div class="detail-overlay" id="detailOverlay" onclick="handleOverlayClick(event)">
+    <div class="detail-panel" id="detailPanel">
+      <button class="detail-close" onclick="closeDetail()">×</button>
+      <img class="detail-hero-img" id="detailImg" src="" alt=""/>
+      <div class="detail-color-bar" id="detailColorBar"></div>
+      <div class="detail-body">
+        <div class="detail-meta">
+          <div class="detail-title" id="detailTitle"></div>
+          <div class="detail-tags" id="detailTags"></div>
+        </div>
+        <div id="detailDescription" style="font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:8px;"></div>
+        <div class="detail-sections">
+          <!-- Colors -->
+          <div>
+            <div class="detail-section-title">Color Palette</div>
+            <div class="palette-swatches" id="detailSwatches"></div>
+            <p style="font-size:11px; color:var(--muted); margin-top:14px; letter-spacing:0.5px;">Click any swatch to copy its hex code.</p>
+          </div>
+          <!-- Visual Refs -->
+          <div>
+            <div class="detail-section-title">Visual References</div>
+            <div class="refs-grid" id="detailRefs"></div>
+          </div>
+          <!-- Music -->
+          <div>
+            <div class="detail-section-title">Music Tracks (Royalty-Free)</div>
+            <div id="detailMusic"></div>
+          </div>
+          <!-- SFX -->
+          <div>
+            <div class="detail-section-title">Sound Effects</div>
+            <div id="detailSfx"></div>
+          </div>
+        </div>
+        <!-- Related Vibes -->
+        <div class="detail-related">
+          <div class="detail-section-title">Related Vibes</div>
+          <div class="related-vibes-grid" id="detailRelated"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
