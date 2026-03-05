@@ -17,9 +17,11 @@
   <header>
     <div class="logo" onclick="navigate('home')" style="cursor:pointer">FRAME<span>VIBES</span></div>
     <nav>
-      <a href="#" onclick="navigate('home')" class="active" id="nav-home">Home</a>
-      <a href="#" onclick="navigate('browse')" id="nav-browse">Browse</a>
-      <a href="#" onclick="navigate('about')" id="nav-about">Sources</a>
+      <a href="#" onclick="return navigate('home')" class="active" id="nav-home">Home</a>
+      <a href="#" onclick="return navigate('browse')" id="nav-browse">Browse</a>
+      <a href="#" onclick="return navigate('about')" id="nav-about">Sources</a>
+      <a href="#" onclick="return navigate('templates')" id="nav-templates">Templates</a>
+      <a href="#" onclick="return navigate('workspace')" id="nav-workspace">Workspace</a>
     </nav>
     <div class="nav-search">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -79,7 +81,7 @@
         <div class="section-title">FEATURED VIBES</div>
         <div class="section-subtitle">Curated cinematic moods — click to explore</div>
       </div>
-      <a href="#" class="section-link" onclick="navigate('browse')">Browse All →</a>
+      <a href="#" class="section-link" onclick="return navigate('browse')">Browse All →</a>
     </div>
 
     <div class="vibes-grid" id="vibesGrid"></div>
@@ -120,27 +122,28 @@
       <div class="footer-col">
         <h4>Navigate</h4>
         <ul>
-          <li><a href="#" onclick="navigate('home')">Home</a></li>
-          <li><a href="#" onclick="navigate('browse')">Browse Vibes</a></li>
-          <li><a href="#" onclick="navigate('about')">Sources</a></li>
+          <li><a href="#" onclick="return navigate('home')">Home</a></li>
+          <li><a href="#" onclick="return navigate('browse')">Browse Vibes</a></li>
+          <li><a href="#" onclick="return navigate('workspace')">Workspace</a></li>
+          <li><a href="#" onclick="return navigate('about')">Sources</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Genres</h4>
         <ul>
-          <li><a href="#" onclick="navigate('browse')">Sci-Fi</a></li>
-          <li><a href="#" onclick="navigate('browse')">Horror</a></li>
-          <li><a href="#" onclick="navigate('browse')">Romance</a></li>
-          <li><a href="#" onclick="navigate('browse')">Indie</a></li>
+          <li><a href="#" onclick="return navigate('browse')">Sci-Fi</a></li>
+          <li><a href="#" onclick="return navigate('browse')">Horror</a></li>
+          <li><a href="#" onclick="return navigate('browse')">Romance</a></li>
+          <li><a href="#" onclick="return navigate('browse')">Indie</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
         <ul>
-          <li><a href="https://freesound.org" target="_blank">Freesound.org</a></li>
-          <li><a href="https://pixabay.com/music" target="_blank">Pixabay Music</a></li>
-          <li><a href="https://freemusicarchive.org" target="_blank">FMA</a></li>
-          <li><a href="https://coolors.co" target="_blank">Coolors</a></li>
+          <li><a href="https://freesound.org" target="_blank" rel="noopener noreferrer">Freesound.org</a></li>
+          <li><a href="https://pixabay.com/music" target="_blank" rel="noopener noreferrer">Pixabay Music</a></li>
+          <li><a href="https://freemusicarchive.org" target="_blank" rel="noopener noreferrer">FMA</a></li>
+          <li><a href="https://coolors.co" target="_blank" rel="noopener noreferrer">Coolors</a></li>
         </ul>
       </div>
     </footer>
@@ -206,9 +209,80 @@
             <option value="fast">Fast (120+ BPM)</option>
           </select>
         </div>
+        <div class="filter-group filter-group--input">
+          <span class="filter-label">Include</span>
+          <input id="filterInclude" class="filter-input" type="text" placeholder="e.g. rain neon" oninput="applyFilters()"/>
+        </div>
+        <div class="filter-group filter-group--input">
+          <span class="filter-label">Exclude</span>
+          <input id="filterExclude" class="filter-input" type="text" placeholder="e.g. horror" oninput="applyFilters()"/>
+        </div>
+        <label class="filter-check">
+          <input id="filterCommercial" type="checkbox" onchange="applyFilters()"/>
+          <span>Commercial-safe only</span>
+        </label>
       </div>
     </div>
+    <section class="workspace-strip">
+      <div class="workspace-strip-header">
+        <div>
+          <div class="section-title">CREATOR WORKSPACE</div>
+          <div class="section-subtitle">Save vibes, compare options, and export a scene-ready pack</div>
+        </div>
+        <div class="workspace-strip-actions">
+          <button class="btn-ghost btn-ghost--small" onclick="exportProject()">Export Project .md</button>
+          <button class="btn-ghost btn-ghost--small" onclick="clearProject()">Clear Project</button>
+        </div>
+      </div>
+      <div class="workspace-strip-stats" id="workspaceStats"></div>
+      <div class="workspace-saved-grid" id="workspaceSavedGrid"></div>
+    </section>
     <div class="browse-grid" id="browseGrid"></div>
+  </div>
+
+  <div class="page" id="page-workspace">
+    <div class="workspace-page-header">
+      <div class="search-page-query">Your <span>Workspace</span></div>
+      <div class="search-page-count">Build a production-ready reference pack from saved vibes.</div>
+    </div>
+    <div class="workspace-tabs">
+      <button class="workspace-tab active" id="ws-tab-vibes" onclick="switchWorkspaceTab('vibes')">Saved Vibes</button>
+      <button class="workspace-tab" id="ws-tab-moodboard" onclick="switchWorkspaceTab('moodboard')">Moodboard</button>
+    </div>
+    <div class="workspace-main" id="ws-panel-vibes">
+      <div class="workspace-main-actions">
+        <button class="btn-primary" onclick="exportProject()">Export Full Project</button>
+        <button class="btn-ghost btn-ghost--small" onclick="exportCompare()">Export Current Compare</button>
+      </div>
+      <div class="workspace-saved-grid workspace-saved-grid--large" id="workspacePageGrid"></div>
+    </div>
+    <div class="workspace-main" id="ws-panel-moodboard" style="display:none">
+      <div class="moodboard-empty" id="moodboardEmpty">
+        <p>Save vibes to your project to build a moodboard.</p>
+      </div>
+      <div id="moodboardContent" style="display:none">
+        <div class="workspace-main-actions">
+          <button class="btn-ghost btn-ghost--small" onclick="printMoodboard()">Print Moodboard</button>
+        </div>
+        <div class="detail-section-title" style="margin-bottom:12px">Combined Palette</div>
+        <div class="moodboard-palette" id="moodboardPalette"></div>
+        <div class="detail-section-title" style="margin-top:28px; margin-bottom:12px">Visual References</div>
+        <div class="moodboard-refs" id="moodboardRefs"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       TEMPLATES PAGE
+  ========================================= -->
+  <div class="page" id="page-templates">
+    <div class="browse-hero">
+      <div class="browse-hero-inner">
+        <div class="browse-title">SCENE <span>TEMPLATES</span></div>
+        <p class="browse-subtitle">Start from a filmmaking scenario — instantly shortlist vibes for each stage of your edit.</p>
+      </div>
+    </div>
+    <div class="templates-grid" id="templatesGrid"></div>
   </div>
 
   <!-- =========================================
@@ -319,7 +393,17 @@
           <div class="detail-title" id="detailTitle"></div>
           <div class="detail-tags" id="detailTags"></div>
         </div>
+        <div class="detail-actions-row">
+          <button class="detail-action-btn" id="detailSaveBtn" onclick="toggleProjectFromDetail()">Save To Project</button>
+          <button class="detail-action-btn" id="detailCompareBtn" onclick="toggleCompareFromDetail()">Add To Compare</button>
+        </div>
         <div id="detailDescription" style="font-size:14px; color:var(--text-dim); line-height:1.8; margin-bottom:8px;"></div>
+        <div class="why-card" id="detailWhyWorks"></div>
+        <div class="note-card">
+          <div class="detail-section-title">Scene Notes</div>
+          <textarea id="detailNoteInput" class="note-input" placeholder="Write how this vibe will be used in your project (scene, timestamp, edit cues)..."></textarea>
+          <div class="note-help">Notes are saved locally in your browser workspace.</div>
+        </div>
         <div class="detail-sections">
           <!-- Colors -->
           <div>
@@ -354,8 +438,32 @@
 
   <!-- Toast -->
   <div class="toast" id="toast"></div>
+  <div class="compare-dock" id="compareDock">
+    <div class="compare-dock-left">
+      <div class="compare-dock-title">Compare Queue</div>
+      <div class="compare-dock-subtitle" id="compareDockSummary">Pick up to 3 vibes to compare.</div>
+      <div class="compare-chip-list" id="compareChipList"></div>
+    </div>
+    <div class="compare-dock-actions">
+      <button class="btn-ghost btn-ghost--small" onclick="clearCompare()">Clear</button>
+      <button class="btn-primary btn-primary--small" onclick="openCompareView()">Open Compare</button>
+    </div>
+  </div>
+  <div class="compare-overlay" id="compareOverlay" onclick="handleCompareOverlayClick(event)">
+    <div class="compare-panel">
+      <button class="detail-close" onclick="closeCompareView()">×</button>
+      <div class="compare-header">
+        <div class="compare-title">Vibe Compare</div>
+        <div class="compare-subtitle">Side-by-side checks for mood, licensing, and sonic direction</div>
+      </div>
+      <div class="compare-table" id="compareTable"></div>
+      <div class="compare-footer">
+        <button class="btn-ghost btn-ghost--small" onclick="exportCompare()">Export Compare .md</button>
+      </div>
+    </div>
+  </div>
 
-  <script src="js/data.js"></script>
+<script src="js/data.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
